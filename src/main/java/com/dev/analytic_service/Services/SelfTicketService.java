@@ -10,8 +10,10 @@ import com.dev.analytic_service.Repositories.ClientRepo;
 import com.dev.analytic_service.Repositories.EmployeeRepo;
 import com.dev.analytic_service.Repositories.TicketRepo;
 import lombok.AllArgsConstructor;
+import org.hibernate.boot.beanvalidation.GroupsPerOperation;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.util.*;
 
 @Service
@@ -114,7 +116,49 @@ public class SelfTicketService implements TicketService{
 
     @Override
     public Map<String, List<TicketResponseDto>> ticketGroupByAgeing() {
-        return null;
+
+//        Groups
+//                1. 0-5 Days
+//                2. 6-10 Days
+//                3. 11-15 Days
+//                4. 16+ Days
+
+        List<Ticket> tickets = ticketRepo.findAll();
+        Map<String, List<TicketResponseDto>> response = new HashMap<>();
+
+        tickets.forEach(ticket -> {
+            long days1 = ticket.getGenerated_on().getTime()/(1000*60*60*24);
+            long days2 = new Date().getTime()/(1000*60*60*24);
+            String key;
+
+            if(days2 - days1 >= 16){
+
+                key = "16+ Days";
+
+            } else if (days2 - days1 >= 11) {
+
+                key = "11-15 Days";
+
+            } else if (days2 - days1 >= 6) {
+
+                key = "6-10 Days";
+
+            }else {
+
+                key = "0-5 Days";
+
+            }
+
+            List<TicketResponseDto> value = response.getOrDefault(key,new ArrayList<>());
+
+            value.add(ticketToTicketResponseDto(ticket));
+
+            response.put(key,value);
+
+
+        });
+
+        return response;
     }
 
     @Override

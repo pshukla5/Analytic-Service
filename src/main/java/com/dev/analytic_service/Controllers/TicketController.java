@@ -19,12 +19,6 @@ public class TicketController {
     TicketService ticketService;
 
 
-    @GetMapping("/tickets/groupByAge")
-    private Map<String, List<TicketResponseDto>> ticketGroupByAgeing(){
-
-        return null;
-    }
-
     @GetMapping("/tickets/groupByAssignedTo")
     private Map<UUID,List<TicketResponseDto>> ticketGroupByAssignedTo(){
 
@@ -41,6 +35,12 @@ public class TicketController {
     private Map<State,List<TicketResponseDto>> ticketsGroupByState(){
 
         return ticketService.ticketGroupByState();
+    }
+
+    @GetMapping("/tickets/groupByAgeing")
+    private Map<String,List<TicketResponseDto>> ticketsGroupByAgeing(){
+
+        return ticketService.ticketGroupByAgeing();
     }
 
 }
