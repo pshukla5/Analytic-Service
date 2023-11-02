@@ -25,4 +25,6 @@ public interface TicketRepo extends JpaRepository<Ticket, UUID> {
     Optional<Ticket> findById(UUID uuid);
 
     List<Ticket> findByStateIsNot(State state);
+
+    List<Ticket> findByStateIs(State state);
 }

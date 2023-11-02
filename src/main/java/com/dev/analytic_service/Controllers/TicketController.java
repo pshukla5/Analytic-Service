@@ -1,19 +1,15 @@
 package com.dev.analytic_service.Controllers;
 
 
-import com.dev.analytic_service.Dtos.EmployeeResponseDto;
 import com.dev.analytic_service.Dtos.TicketResponseDto;
+import com.dev.analytic_service.Enums.State;
 import com.dev.analytic_service.Services.TicketService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RestController
@@ -29,19 +25,20 @@ public class TicketController {
         return null;
     }
 
-    @GetMapping("/tickets/groupByEmployee")
+    @GetMapping("/tickets/groupByAssignedTo")
     private Map<UUID,List<TicketResponseDto>> ticketGroupByAssignedTo(){
 
-        Map<UUID,List<TicketResponseDto>> response =
-                ticketService.ticketGroupByAssignedTo();
-
-        System.out.println(response);
-
-        return response;
+        return ticketService.ticketGroupByAssignedTo();
     }
 
-    @GetMapping("/tickets/closerPerUSer")
-    private Map<EmployeeResponseDto,List<TicketResponseDto>> closedPerUser(){
+    @GetMapping("/tickets/resolvedPerUSer")
+    private Map<UUID,List<TicketResponseDto>> ticketsResolvedPerUser(){
+
+        return ticketService.ticketResolvedPerUSer();
+    }
+
+    @GetMapping("/tickets/groupByState")
+    private Map<State,List<TicketResponseDto>> ticketsGroupByState(){
 
         return null;
     }

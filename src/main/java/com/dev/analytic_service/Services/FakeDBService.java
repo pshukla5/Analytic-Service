@@ -315,6 +315,30 @@ public class FakeDBService {
         );
         ticketRepo.save(ticketRequestDtoToTicket(ticketRequestDto));
 
+        ticketRequestDto.setDescription("need ODC5 access");
+        ticketRequestDto.setState(State.RESOLVED);
+        ticketRequestDto.setRaised_by_email("jenny@gmail.com");
+        ticketRequestDto.setAssigned_to_email("vishal@gmail.com");
+        ticketRequestDto.setGenerated_on(Date.from(
+                localDateTime.minusDays(12).atZone(ZoneId.systemDefault()).toInstant())
+        );
+        ticketRequestDto.setLast_updated(Date.from(
+                localDateTime.minusDays(11).atZone(ZoneId.systemDefault()).toInstant())
+        );
+        ticketRepo.save(ticketRequestDtoToTicket(ticketRequestDto));
+
+        ticketRequestDto.setDescription("need ODC6 access");
+        ticketRequestDto.setState(State.RESOLVED);
+        ticketRequestDto.setRaised_by_email("jenny@gmail.com");
+        ticketRequestDto.setAssigned_to_email("mithesh@gmail.com");
+        ticketRequestDto.setGenerated_on(Date.from(
+                localDateTime.minusDays(12).atZone(ZoneId.systemDefault()).toInstant())
+        );
+        ticketRequestDto.setLast_updated(Date.from(
+                localDateTime.minusDays(11).atZone(ZoneId.systemDefault()).toInstant())
+        );
+        ticketRepo.save(ticketRequestDtoToTicket(ticketRequestDto));
+
 
         System.out.println("DB SET");
 

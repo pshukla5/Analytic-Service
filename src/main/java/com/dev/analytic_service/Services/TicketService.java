@@ -21,6 +21,6 @@ public interface TicketService {
 
     public Map<String,List<TicketResponseDto>> ticketGroupByAgeing();
 
-    public Map<EmployeeResponseDto,List<TicketResponseDto>> ticketResolvedPerUSer();
+    public Map<UUID,List<TicketResponseDto>> ticketResolvedPerUSer();
 
 }

@@ -98,7 +98,22 @@ public class SelfTicketService implements TicketService{
     }
 
     @Override
-    public Map<EmployeeResponseDto, List<TicketResponseDto>> ticketResolvedPerUSer() {
-        return null;
+    public Map<UUID, List<TicketResponseDto>> ticketResolvedPerUSer() {
+
+        List<Ticket> tickets = ticketRepo.findByStateIs(State.RESOLVED);
+
+        Map<UUID, List<TicketResponseDto>> response = new HashMap<>();
+
+        tickets.forEach(ticket -> {
+            UUID key = ticket.getAssigned_to().getId();
+
+            List<TicketResponseDto> value = response.getOrDefault(key,new ArrayList<>());
+
+            value.add(ticketToTicketResponseDto(ticket));
+
+            response.put(key,value);
+        });
+
+        return response;
     }
 }
