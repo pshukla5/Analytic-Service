@@ -6,33 +6,41 @@ import com.dev.analytic_service.Dtos.TicketResponseDto;
 import com.dev.analytic_service.Services.TicketService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RestController
 @AllArgsConstructor
 public class TicketController {
 
-//    TicketService ticketService;
+    TicketService ticketService;
 
 
-    @RequestMapping("/tickets/groupByAge")
+    @GetMapping("/tickets/groupByAge")
     private Map<String, List<TicketResponseDto>> ticketGroupByAgeing(){
 
         return null;
     }
 
-    @RequestMapping("/tickets/groupByUser")
-    private Map<EmployeeResponseDto,List<TicketResponseDto>> ticketGroupByUser(){
+    @GetMapping("/tickets/groupByEmployee")
+    private Map<UUID,List<TicketResponseDto>> ticketGroupByAssignedTo(){
 
-        return null;
+        Map<UUID,List<TicketResponseDto>> response =
+                ticketService.ticketGroupByAssignedTo();
+
+        System.out.println(response);
+
+        return response;
     }
 
-    @RequestMapping("/tickets/closerPerUSer")
+    @GetMapping("/tickets/closerPerUSer")
     private Map<EmployeeResponseDto,List<TicketResponseDto>> closedPerUser(){
 
         return null;

@@ -15,7 +15,6 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity(name = "Employees")
-@PrimaryKeyJoinColumn(name = "employee_id")
 public class Employee extends User{
 
     String work_dept;

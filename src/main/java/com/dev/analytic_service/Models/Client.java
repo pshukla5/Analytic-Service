@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "Clients")
-@PrimaryKeyJoinColumn(name = "client_id")
 public class Client extends User{
 
     String address;

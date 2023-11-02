@@ -127,7 +127,7 @@ public class FakeDBService {
         employeeRequestDto.setHire_date(Date.from(localDateTime.minusYears(3).atZone(ZoneId.systemDefault()).toInstant())
         );
         employeeRequestDto.setBirth_date(Date.from(
-                localDateTime.minusYears(3).atZone(ZoneId.systemDefault()).toInstant())
+                localDateTime.minusYears(36).atZone(ZoneId.systemDefault()).toInstant())
         );
         employeeRepo.save(employeeRequestDtoToEmployee(employeeRequestDto));
 

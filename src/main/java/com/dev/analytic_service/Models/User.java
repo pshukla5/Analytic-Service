@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Users")
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class User extends BaseModel {
 
     String name;

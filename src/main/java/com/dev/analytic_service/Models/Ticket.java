@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Date;
 
@@ -22,10 +24,10 @@ public class Ticket extends BaseModel{
     @Enumerated(EnumType.STRING)
     State state;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Employee assigned_to;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Client raised_by;
 
 //    @Column(columnDefinition = "DATETIME")
