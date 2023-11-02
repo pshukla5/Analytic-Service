@@ -93,6 +93,26 @@ public class SelfTicketService implements TicketService{
     }
 
     @Override
+    public Map<State, List<TicketResponseDto>> ticketGroupByState() {
+
+        List<Ticket> tickets = ticketRepo.findAll();
+        Map<State, List<TicketResponseDto>> response = new HashMap<>();
+
+        tickets.forEach(ticket -> {
+
+            State key = ticket.getState();
+            List<TicketResponseDto> value = response.getOrDefault(key,new ArrayList<>());
+
+            value.add(ticketToTicketResponseDto(ticket));
+
+            response.put(key,value);
+
+
+        });
+        return response;
+    }
+
+    @Override
     public Map<String, List<TicketResponseDto>> ticketGroupByAgeing() {
         return null;
     }

@@ -40,7 +40,7 @@ public class TicketController {
     @GetMapping("/tickets/groupByState")
     private Map<State,List<TicketResponseDto>> ticketsGroupByState(){
 
-        return null;
+        return ticketService.ticketGroupByState();
     }
 
 }
